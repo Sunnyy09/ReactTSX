@@ -12,9 +12,11 @@ function App() {
   const { data, error, loading } = useWeatherInfo(searchCity, triggerCity);
   console.log(data);
 
-  const handleSearch = (): void => {
-    if (searchCity) {
+  const handleSearch = () => {
+    if (searchCity.trim()) {
       setTriggerCity(true);
+    } else {
+      alert("Please enter a city name.");
     }
   };
 

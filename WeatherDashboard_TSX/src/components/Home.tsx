@@ -1,4 +1,5 @@
 import { WeatherData } from "../weather";
+import WeatherTable from "./WeatherTable";
 
 interface WeatherDataProps {
   data: WeatherData | null;
@@ -124,116 +125,8 @@ function Home({ data, loading, error }: WeatherDataProps) {
             </div>
           </div>
 
-          <h2 className="display-6 text-center mt-6 mb-4">
-            Weather of other common places
-          </h2>
-
-          <div className="table-responsive">
-            <table className="table text-center">
-              <thead>
-                <tr>
-                  <th style={{ width: "34%" }}></th>
-                  <th style={{ width: "22%" }}>temp</th>
-                  <th style={{ width: "22%" }}>temp_max</th>
-                  <th style={{ width: "22%" }}>temp_min</th>
-                  <th style={{ width: "22%" }}>feels_like</th>
-                  <th style={{ width: "22%" }}>pressure</th>
-                  <th style={{ width: "22%" }}>sea_level</th>
-                  <th style={{ width: "22%" }}>grnd_level</th>
-                  <th style={{ width: "22%" }}>humidity</th>
-                  <th style={{ width: "22%" }}>wind</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row" className="text-start">
-                    Fatehgarh Sahib
-                  </th>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start">
-                    Boston
-                  </th>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                </tr>
-              </tbody>
-
-              <tbody>
-                <tr>
-                  <th scope="row" className="text-start">
-                    Lucknow
-                  </th>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start">
-                    Kolkata
-                  </th>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start">
-                    Chandigarh
-                  </th>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="text-start">
-                    Shanghai
-                  </th>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                  <td>2</td>
-                </tr>
-              </tbody>
-            </table>
+          <div>
+            <WeatherTable />
           </div>
         </>
       )}
