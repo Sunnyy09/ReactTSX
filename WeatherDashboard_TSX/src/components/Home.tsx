@@ -15,25 +15,21 @@ function Home({ data, loading, error }: WeatherDataProps) {
     );
 
   return (
-    <section className="min-h-[100vh] w-[70vw] py-12">
+    <section className="min-h-[100vh] w-[80vw] py-12">
       {loading ? (
         <p className="text-center">Loading Weather Data...</p>
       ) : (
         <>
-          <h1 className="text-3xl text-center font-bold my-4">
+          <h1 className="text-3xl text-center font-bold mb-8">
             Weather for {data?.name}
           </h1>
-          <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
+          <div className="row row-cols-1 row-cols-md-3 mb-3 text-center min-h-80 md:flex md:flex-wrap">
             <div className="col">
-              <div className="card mb-4 rounded-3 shadow-sm">
+              <div className="card mb-4 rounded-3 shadow-sm lg:min-h-full sm:h-full">
                 <div className="card-header py-3">
                   <h4 className="my-0 fw-normal">Temperature</h4>
                 </div>
                 <div className="card-body">
-                  <h1 className="card-title pricing-card-title">
-                    $0
-                    <small className="text-body-secondary fw-light">/mo</small>
-                  </h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li>
                       Temperature is <span>{data?.main.temp}</span>
@@ -58,21 +54,26 @@ function Home({ data, loading, error }: WeatherDataProps) {
               </div>
             </div>
             <div className="col">
-              <div className="card mb-4 rounded-3 shadow-sm">
+              <div className="card mb-4 rounded-3 shadow-sm lg:min-h-full sm:h-full">
                 <div className="card-header py-3">
-                  <h4 className="my-0 fw-normal">Pro</h4>
+                  <h4 className="my-0 fw-normal">Humidity Info</h4>
                 </div>
                 <div className="card-body">
-                  <h1 className="card-title pricing-card-title">
-                    $15
-                    <small className="text-body-secondary fw-light">/mo</small>
-                  </h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li>
                       Feels like <span>{data?.main.feels_like}</span>
                     </li>
                     <li>
                       Humidity is <span>{data?.main.humidity}</span>
+                    </li>
+                    <li>
+                      Pressure is <span>{data?.main.pressure}</span>
+                    </li>
+                    <li>
+                      Sea Level is <span>{data?.main.sea_level}</span>
+                    </li>
+                    <li>
+                      Ground Level is <span>{data?.main.grnd_level}</span>
                     </li>
                   </ul>
                   <button
@@ -85,15 +86,11 @@ function Home({ data, loading, error }: WeatherDataProps) {
               </div>
             </div>
             <div className="col">
-              <div className="card mb-4 rounded-3 shadow-sm border-primary">
+              <div className="card rounded-3 shadow-sm border-primary lg:min-h-full sm:h-full">
                 <div className="card-header py-3 text-bg-primary border-primary">
-                  <h4 className="my-0 fw-normal">Enterprise</h4>
+                  <h4 className="my-0 fw-normal">Wind Info</h4>
                 </div>
                 <div className="card-body">
-                  <h1 className="card-title pricing-card-title">
-                    $29
-                    <small className="text-body-secondary fw-light">/mo</small>
-                  </h1>
                   <ul className="list-unstyled mt-3 mb-4">
                     <li>
                       Wind Speed is <span>{data?.wind.speed}</span>

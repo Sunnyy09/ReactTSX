@@ -10,6 +10,7 @@ function App() {
   const [triggerCity, setTriggerCity] = useState<boolean>(false);
 
   const { data, error, loading } = useWeatherInfo(searchCity, triggerCity);
+  console.log(data);
 
   const handleSearch = (): void => {
     if (searchCity) {
@@ -19,7 +20,7 @@ function App() {
 
   useEffect(() => {
     setTriggerCity(true);
-  });
+  }, []);
 
   const handleNameChange = (value: string): void => {
     setSearchCity(value);

@@ -48,10 +48,14 @@ export function useWeatherInfo(cityName: string, triggerSearch: boolean) {
     fetchWeatherdata();
 
     // Reset triggerSearch after the request completes
+    // return () => {
+    //   setData(null);
+    //   setLoading(false);
+    //   setError(null);
+    // };
+
     return () => {
-      setData(null);
-      setLoading(false);
-      setError(null);
+      controller.abort();
     };
   }, [cityName, triggerSearch]);
 
