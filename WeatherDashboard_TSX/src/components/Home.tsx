@@ -69,7 +69,7 @@ function Home({ data, loading, error }: HookResult) {
                     className="w-100 btn btn-lg btn-primary"
                     onClick={scrollToTable}
                   >
-                    Check another Places
+                    Check More
                   </button>
                 </div>
               </div>

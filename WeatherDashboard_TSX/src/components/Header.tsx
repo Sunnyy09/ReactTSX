@@ -13,8 +13,8 @@ interface HeaderProps {
 
 function Header({ onSearch, onNameChange, nameSearch }: HeaderProps) {
   return (
-    <section className="w-full px-4">
-      <Navbar expand="lg" className="bg-body-tertiary">
+    <section className="w-full">
+      <Navbar expand="lg" className="bg-body-tertiary px-4">
         <Container fluid>
           <Navbar.Brand href="/">SunnySide</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
