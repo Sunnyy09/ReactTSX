@@ -1,8 +1,9 @@
 import { useWeatherInfo } from "../hooks/useWeatherInfo";
 import { useState, useEffect } from "react";
+import { HookResult } from "../weather";
 
 function WeatherTable() {
-  const cities = [
+  const cities: string[] = [
     "Fatehgarh Sahib",
     "Boston",
     "Lucknow",
@@ -13,12 +14,14 @@ function WeatherTable() {
 
   const [triggerSearch, setTriggerSearch] = useState<boolean>(false);
 
-  const weatherData = cities.map((city: string) => {
-    useWeatherInfo(city, triggerSearch);
-  });
+  // Here Call the custom hook for each city and store the results
+  const weatherData: HookResult[] = cities.map((city) =>
+    useWeatherInfo(city, triggerSearch)
+  );
 
   useEffect(() => {
-    setTriggerSearch((prev) => !prev);
+    // setTriggerSearch((prev) => !prev);
+    setTriggerSearch(true);
   }, []);
 
   return (
@@ -44,93 +47,48 @@ function WeatherTable() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row" className="text-start">
-                Fatehgarh Sahib
-              </th>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <th scope="row" className="text-start">
-                Boston
-              </th>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
-          </tbody>
+            {weatherData.map((dataObj: any, idx) => {
+              const { data, loading, error } = dataObj;
 
-          <tbody>
-            <tr>
-              <th scope="row" className="text-start">
-                Lucknow
-              </th>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <th scope="row" className="text-start">
-                Kolkata
-              </th>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <th scope="row" className="text-start">
-                Chandigarh
-              </th>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <th scope="row" className="text-start">
-                Shanghai
-              </th>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
+              if (loading) {
+                return (
+                  <tr key={idx}>
+                    <td colSpan={10}>
+                      Loading Weather data for {cities[idx]}...
+                    </td>
+                  </tr>
+                );
+              }
+
+              if (error) {
+                return (
+                  <tr key={idx}>
+                    <td colSpan={10}>
+                      Error fetchong data for {cities[idx]} |: {error}
+                    </td>
+                  </tr>
+                );
+              }
+
+              return data ? (
+                <tr key={idx}>
+                  <th scope="row">{data.city}</th>
+                  <td>{data.main.temp}</td>
+                  <td>{data.main.temp_max}</td>
+                  <td>{data.main.temp_min}</td>
+                  <td>{data.main.feels_like}</td>
+                  <td>{data.main.pressure}</td>
+                  <td>{data.main.sea_level || "N/A"}</td>
+                  <td>{data.main.grnd_level || "N/A"}</td>
+                  <td>{data.main.humidity}</td>
+                  <td>{data.wind.speed}</td>
+                </tr>
+              ) : (
+                <tr key={idx}>
+                  <td colSpan={10}>No data available for {cities[idx]}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
